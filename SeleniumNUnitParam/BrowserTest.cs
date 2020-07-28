@@ -18,7 +18,7 @@ namespace SeleniumNUnitParam
             element.SendKeys("selenium webdriver");
 
             // Get the search results panel that contains the link for each result.
-            IWebElement resultsPanel = driver.FindElement(By.Id("search"));
+            IWebElement resultsPanel = Driver.FindElement(By.Id("search"));
 
             // Get all the links only contained within the search result panel.
             ReadOnlyCollection<IWebElement> searchResults = resultsPanel.FindElements(By.XPath(".//a"));
