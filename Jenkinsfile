@@ -53,7 +53,8 @@ pipeline {
 			Job Name: ${env.JOB_NAME} <br/>
 			Url: ${env.BUILD_URL} <br/>
 			Result: ${currentBuild.result} <br/>
-			''', subject: 'Status of pipeline: ${currentBuild.fullDisplayName}', to: 'developerprofiles@gmail.com'		}
+			''', subject: 'Status of pipeline: ${currentBuild.fullDisplayName}', to: 'developerprofiles@gmail.com'		
+		}
 	}
 	post {
 		always {
