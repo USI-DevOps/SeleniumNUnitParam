@@ -27,16 +27,18 @@ pipeline {
 			}
 		}
 		
-		stage('NUnit-Test') {
-			steps {
-				echo "Running NUnit Tests";			
-				bat 'C:/DevOps/Tools/NUnit.Console-3.11.1/bin/net35/nunit3-console.exe SeleniumNUnitParam/bin/Debug/SeleniumNUnitParam.dll' 
-				
-				catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-				    sh "exit 1"
+		try {
+			   stage('NUnit-Test') {
+
+					steps {
+						echo "Running NUnit Tests";			
+						bat 'C:/DevOps/Tools/NUnit.Console-3.11.1/bin/net35/nunit3-console.exe SeleniumNUnitParam/bin/Debug/SeleniumNUnitParam.dll' 
+					}
 				}
-			}
-		}
+			 } catch (Exception e) {
+			    echo "Stage failed, but we continue"  
+			 }	
+		
 		
 		stage('Quality-Gate') {
 			steps {
