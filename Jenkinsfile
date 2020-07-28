@@ -74,11 +74,25 @@ pipeline {
 		    steps {
 			echo "ok"
 		    }
-		}		
+		}
+		
+		stage('Download') {
+		    steps {
+			sh 'mkdir js'
+			sh 'echo "not a artifact file" > js/build.js'
+			sh 'echo "artifact file" > js/build.min.js'
+
+			sh 'mkdir css'
+			sh 'echo "not a artifact file" > css/build.css'
+			sh 'echo "artifact file" > css/build.min.css'
+		    }
+		}
 	}
 	post {
 		always {
 			echo "This will always run"
+			archiveArtifacts artifacts: '**/*.min.*', onlyIfSuccessful: true
+			
 			//emailext body: '<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p><p>View console output at <a href=\'${env.BUILD_URL}\'>${env.JOB_NAME}:${env.BUILD_NUMBER}</a> has result ${currentBuild.result}"</p><p><i>(Build log is attached.)</i></p>', compressLog: true, replyTo: 'developerprofiles@gmail.com', subject: 'Status: ${currentBuild.result?:\'SUCCESS\'} - Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'', to: 'developerprofiles@gmail.com'		}
 			emailext body: '<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p><p>View console output at <a href=\'${env.BUILD_URL}\'>${env.JOB_NAME}:${env.BUILD_NUMBER}</a> has result {currentBuild.result}"</p><p><i>(Build log is attached.)</i></p>', compressLog: true, replyTo: 'developerprofiles@gmail.com', subject: 'Status: {currentBuild.result?:\'SUCCESS\'} - Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'', to: 'developerprofiles@gmail.com'		}
 		success {
