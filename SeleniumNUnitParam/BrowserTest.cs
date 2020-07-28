@@ -10,7 +10,7 @@ namespace SeleniumNUnitParam
 {
     public class BrowserTest : Hooks
     {     
-        [Test]
+        /*[Test]
         public void Test()
         {
             Driver.Navigate().GoToUrl("http://www.google.com");
@@ -46,7 +46,7 @@ namespace SeleniumNUnitParam
             searchText.SendKeys(Keys.Enter);
             System.Threading.Thread.Sleep(2000);
             Assert.That(Driver.PageSource.Contains("Pluralsight"), Is.EqualTo(true), "The text Pluralsight doest not exist");
-        }
+        }*/
         
         [Test]
         public void ExecuteAutomationTest()
@@ -65,7 +65,8 @@ namespace SeleniumNUnitParam
             Driver.Navigate().GoToUrl("http://www.google.com");
             Driver.FindElement(By.Name("q")).SendKeys("Selenium");
             System.Threading.Thread.Sleep(5000);
-            Driver.FindElement(By.Name("btnG")).Click();
+            Driver.FindElement(By.Name("q")).SendKeys(Keys.ENTER); 
+            //Driver.FindElement(By.Name("btnG")).Click();
             Assert.That(Driver.PageSource.Contains("Selenium"), Is.EqualTo(true), "The text selenium doest not exist");
         }
     }
