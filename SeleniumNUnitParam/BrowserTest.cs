@@ -9,7 +9,29 @@ using System.Threading.Tasks;
 namespace SeleniumNUnitParam
 {
     public class BrowserTest : Hooks
-    {  
+    {     
+        [Test]
+        public void Test()
+        {
+            Driver.Navigate().GoToUrl("http://www.google.com");
+            IWebElement element = Driver.FindElement(By.Id("gbqfq"));
+            element.SendKeys("selenium webdriver");
+
+            // Get the search results panel that contains the link for each result.
+            IWebElement resultsPanel = driver.FindElement(By.Id("search"));
+
+            // Get all the links only contained within the search result panel.
+            ReadOnlyCollection<IWebElement> searchResults = resultsPanel.FindElements(By.XPath(".//a"));
+
+            // Print the text for every link in the search results.
+            foreach (IWebElement result in searchResults)
+            {
+                //Console.WriteLine(result.Text);
+            }
+            System.Threading.Thread.Sleep(2000);
+            Assert.That(Driver.PageSource.Contains("selenium webdriver"), Is.EqualTo(true), "The text selenium webdriver doest not exist");
+        }
+    
         [Test]
         public void PluralsightTest()
         {
