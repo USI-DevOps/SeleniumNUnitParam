@@ -30,7 +30,7 @@ pipeline {
 		stage('NUnit-Test') {
 			steps {
 				echo "Running NUnit Tests";			
-				//bat 'C:/DevOps/Tools/NUnit.Console-3.11.1/bin/net35/nunit3-console.exe SeleniumNUnitParam/bin/Debug/SeleniumNUnitParam.dll' 
+				bat 'C:/DevOps/Tools/NUnit.Console-3.11.1/bin/net35/nunit3-console.exe SeleniumNUnitParam/bin/Debug/SeleniumNUnitParam.dll' 
 			}
 		}
 		
