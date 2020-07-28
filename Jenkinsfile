@@ -58,20 +58,7 @@ pipeline {
 				emailext body: 'Build completed @ %Date%.%Time%', subject: 'Build Completed', to: 'developerprofiles@gmail.com'
 			}
 		}	
-		
-		stage('Download') {
-		    steps {
-			echo "Archieve test step";
-			sh 'mkdir js'
-			sh 'echo "not a artifact file" > js/build.js'
-			sh 'echo "artifact file" > js/build.min.js'
-
-			sh 'mkdir css'
-			sh 'echo "not a artifact file" > css/build.css'
-			sh 'echo "artifact file" > css/build.min.css'
-		    }
-		}
-		
+				
 		stage('Error') {
 		    when {
 			expression { doError == '1' }
