@@ -47,10 +47,13 @@ pipeline {
 		}
 		
 		stage('Email') {
-			emailext body: '''<p>EXECUTED: Job <b>${env.JOB_NAME}:${env.BUILD_NUMBER})
-   </b></p><p>View console output at <a href="${env.BUILD_URL}"> 
-   ${env.JOB_NAME}:${env.BUILD_NUMBER}</a> has result ${currentBuild.result}</p>''', subject: 'Status of pipeline: ${currentBuild.fullDisplayName}', to: 'developerprofiles@gmail.com'
-		}
+			emailext body: '''Build completed and these are the results
+			Job : ${env.JOB_NAME} <br/>
+			Build Number: ${env.BUILD_NUMBER} <br/>
+			Job Name: ${env.JOB_NAME} <br/>
+			Url: ${env.BUILD_URL} <br/>
+			Result: ${currentBuild.result} <br/>
+			''', subject: 'Status of pipeline: ${currentBuild.fullDisplayName}', to: 'developerprofiles@gmail.com'		}
 	}
 	post {
 		always {
