@@ -14,9 +14,11 @@ namespace SeleniumNUnitParam
         public void Test()
         {
             Driver.Navigate().GoToUrl("http://www.google.com");
-            IWebElement element = Driver.FindElement(By.Id("gbqfq"));
+            IWebElement element = Driver.FindElement(By.Id("q"));
             element.SendKeys("selenium webdriver");
-
+            System.Threading.Thread.Sleep(5000);
+            Driver.FindElement(By.Name("btnG")).Click();
+            
             // Get the search results panel that contains the link for each result.
             IWebElement resultsPanel = Driver.FindElement(By.Id("search"));
 
@@ -28,7 +30,7 @@ namespace SeleniumNUnitParam
             //{
                 //Console.WriteLine(result.Text);
             //}
-            System.Threading.Thread.Sleep(2000);
+
             Assert.That(Driver.PageSource.Contains("selenium webdriver"), Is.EqualTo(true), "The text selenium webdriver doest not exist");
         }
     
@@ -36,8 +38,11 @@ namespace SeleniumNUnitParam
         public void PluralsightTest()
         {
             Driver.Navigate().GoToUrl("http://www.google.com");
-            var searchText = Driver.FindElement(By.Id("lst-ib"));
+            
+            var searchText = Driver.FindElement(By.Id("q"));
             searchText.SendKeys("Pluralsight");
+            System.Threading.Thread.Sleep(5000);
+            
             searchText.SendKeys(Keys.Enter);
             System.Threading.Thread.Sleep(2000);
             Assert.That(Driver.PageSource.Contains("Pluralsight"), Is.EqualTo(true), "The text Pluralsight doest not exist");
