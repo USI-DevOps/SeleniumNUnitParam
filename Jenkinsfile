@@ -46,6 +46,11 @@ pipeline {
 			}
 		}
 		
+		stage('Email') {
+			emailext body: '''<p>EXECUTED: Job <b>${env.JOB_NAME}:${env.BUILD_NUMBER})
+   </b></p><p>View console output at <a href="${env.BUILD_URL}"> 
+   ${env.JOB_NAME}:${env.BUILD_NUMBER}</a> has result ${currentBuild.result}</p>''', subject: 'Status of pipeline: ${currentBuild.fullDisplayName}', to: 'developerprofiles@gmail.com'
+		}
 	}
 	post {
 		always {
