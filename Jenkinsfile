@@ -45,10 +45,19 @@ pipeline {
 				echo "Deploying to stage environment for more tests!";
 			}
 		}
+		
+		stage('Email') {
+			
+		}
 	}
 	post {
 		always {
 			echo "This will always run"
+			emailext body: """<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'
+   </b></p><p>View console output at "<a href="${env.BUILD_URL}"> 
+   ${env.JOB_NAME}:${env.BUILD_NUMBER}</a> has result ${currentBuild.result}"</p> 
+     <p><i>(Build log is attached.)</i></p>""", compressLog: true, replyTo: 'do-not-reply@usi.com', recipientProviders: [developers()], subject: 'Status: ${currentBuild.result?:'SUCCESS'} - 
+    Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'', to: 'developer@usi.com' 
 		}
 		success {
 			echo "This will run only if successful, trigger a mail"
