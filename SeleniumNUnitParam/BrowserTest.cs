@@ -17,7 +17,9 @@ namespace SeleniumNUnitParam
             IWebElement element = Driver.FindElement(By.Id("q"));
             element.SendKeys("selenium webdriver");
             System.Threading.Thread.Sleep(5000);
-            Driver.FindElement(By.Name("btnG")).Click();
+            
+            Driver.FindElement(By.xpath("//*[@id="tsf"]/div[2]/div[1]/div[3]/center/input[1]")).Click();
+            Driver.FindElement(By.Name("btnK")).Click();
             
             // Get the search results panel that contains the link for each result.
             IWebElement resultsPanel = Driver.FindElement(By.Id("search"));
