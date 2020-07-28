@@ -46,6 +46,12 @@ pipeline {
 			}
 		}
 		
+		stage('Email') {
+			steps {
+				echo "Sending email after build";
+				emailext body: 'Build completed @ %Date%.%Time%', subject: 'Build Completed', to: 'developerprofiles@gmail.com'
+			}
+		}	
 		
 	}
 	post {
