@@ -46,9 +46,6 @@ pipeline {
 			}
 		}
 		
-		stage('Email') {
-			
-		}
 	}
 	post {
 		always {
