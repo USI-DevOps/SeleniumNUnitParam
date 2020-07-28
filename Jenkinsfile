@@ -21,7 +21,7 @@ pipeline {
 		stage('Build') {
 			steps {
 				echo "Building the checked-out project";
-				bat label: '', script: 'C:\\DevOps\\BuildTools\\MSBuild\\MSBuild.exe SeleniumNUnitParam.sln /p:Configuration=Debug /p:Platform=\\"Any CPU\\"  /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}'
+				bat label: '', script: 'C:\\DevOps\\BuildTools\\MSBuild\\MSBuild.exe SeleniumNUnitParam.sln /p:Configuration=Debug /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}'
 				//bat 'C:\DevOps\BuildTools\MSBuild\MSBuild.exe SeleniumNUnitParam.sln /p:Configuration=Debug /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}'
 				//bat "\"${tool 'MSBuild'}\"  SeleniumNUnitParam.sln /p:Configuration=Debug /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
 			}
