@@ -61,7 +61,7 @@ namespace SeleniumNUnitParam
             Assert.That(Driver.PageSource.Contains("Selenium"), Is.EqualTo(true), "The text selenium doest not exist");
         }
 
-        [Test]
+        /*[Test]
         public void GoogleTest()
         {
             Driver.Navigate().GoToUrl("http://www.google.com");
@@ -72,6 +72,6 @@ namespace SeleniumNUnitParam
             Driver.FindElement(By.XPath("//*[@id='tsf']/div[2]/div[1]/div[3]/center/input[1]")).Click();
             Driver.FindElement(By.Name("btnK")).Click();
             //Assert.That(Driver.PageSource.Contains("Selenium"), Is.EqualTo(true), "The text selenium doest not exist");
-        }
+        }*/
     }
 }
