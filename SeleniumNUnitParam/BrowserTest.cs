@@ -21,13 +21,13 @@ namespace SeleniumNUnitParam
             IWebElement resultsPanel = Driver.FindElement(By.Id("search"));
 
             // Get all the links only contained within the search result panel.
-            ReadOnlyCollection<IWebElement> searchResults = resultsPanel.FindElements(By.XPath(".//a"));
+            //ReadOnlyCollection<IWebElement> searchResults = resultsPanel.FindElements(By.XPath(".//a"));
 
             // Print the text for every link in the search results.
-            foreach (IWebElement result in searchResults)
-            {
+            //foreach (IWebElement result in searchResults)
+            //{
                 //Console.WriteLine(result.Text);
-            }
+            //}
             System.Threading.Thread.Sleep(2000);
             Assert.That(Driver.PageSource.Contains("selenium webdriver"), Is.EqualTo(true), "The text selenium webdriver doest not exist");
         }
