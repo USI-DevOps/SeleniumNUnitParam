@@ -1,4 +1,8 @@
 pipeline {
+	environment {
+		//This variable need be tested as string
+		doError = '1'
+    	}
 	agent {
 		label 'Windows_Node'
 	}
@@ -51,8 +55,26 @@ pipeline {
 				echo "Sending email after build";
 				emailext body: 'Build completed @ %Date%.%Time%', subject: 'Build Completed', to: 'developerprofiles@gmail.com'
 			}
-		}	
+		}		
 		
+		stage('Error') {
+		    when {
+			expression { doError == '1' }
+		    }
+		    steps {
+			echo "Failure"
+			error "failure test. It's work"
+		    }
+		}
+
+		stage('Success') {
+		    when {
+			expression { doError == '0' }
+		    }
+		    steps {
+			echo "ok"
+		    }
+		}		
 	}
 	post {
 		always {
