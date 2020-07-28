@@ -46,20 +46,12 @@ pipeline {
 			}
 		}
 		
-		stage('Email') {
-			emailext body: '''Build completed and these are the results
-			Job : ${env.JOB_NAME} <br/>
-			Build Number: ${env.BUILD_NUMBER} <br/>
-			Job Name: ${env.JOB_NAME} <br/>
-			Url: ${env.BUILD_URL} <br/>
-			Result: ${currentBuild.result} <br/>
-			''', subject: 'Status of pipeline: ${currentBuild.fullDisplayName}', to: 'developerprofiles@gmail.com'		
-		}
+		
 	}
 	post {
 		always {
 			echo "This will always run"
-			emailext body: '<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p><p>View console output at <a href=\'${env.BUILD_URL}\'>${env.JOB_NAME}:${env.BUILD_NUMBER}</a> has result ${currentBuild.result}"</p><p><i>(Build log is attached.)</i></p>', compressLog: true, recipientProviders: [developers()], replyTo: 'do-not-reply@usi.com', subject: 'Status: ${currentBuild.result?:\'SUCCESS\'} - Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'', to: 'developer@usi.com'		}
+			emailext body: '<p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p><p>View console output at <a href=\'${env.BUILD_URL}\'>${env.JOB_NAME}:${env.BUILD_NUMBER}</a> has result ${currentBuild.result}"</p><p><i>(Build log is attached.)</i></p>', compressLog: true, recipientProviders: [developers()], replyTo: 'do-not-reply@usi.com', subject: 'Status: ${currentBuild.result?:\'SUCCESS\'} - Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'', to: 'developerprofiles@gmail.com'		}
 		success {
 			echo "This will run only if successful, trigger a mail"
 		}
